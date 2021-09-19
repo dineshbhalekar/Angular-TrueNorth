@@ -27,7 +27,7 @@
                         </mat-card-content>
                     </mat-card>
                 </div>
-                <div *ngIf="control.field_type === 'radio_buttons'" style="margin: 10px; padding: 10px; border-bottom: 1px solid lightgray;">
+                <div *ngIf="control.field_type === 'radio_buttons'" style="margin: 10px; padding: 10px; border-bottom: 1px solid lightgray; padding-bottom: 30px;">
                     <h4>{{control.name}}</h4>
                     <mat-radio-group aria-label="Select an option" [(ngModel)]="control.value"
                         class="example-full-width">
