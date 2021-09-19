@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { JsonForm, Section, Group, Parameters } from '../shared/json-form.model'
+
 @Component({
   selector: 'app-json-form',
   templateUrl: './json-form.component.html',
@@ -23,6 +25,7 @@ export class JsonFormComponent implements OnInit {
   vertical = false;
   tickInterval = 1;
 
+  // Hardcoded input JSON
   inputJson: any = {
     "section": [
       {
@@ -120,12 +123,12 @@ export class JsonFormComponent implements OnInit {
     }
     return 0;
   }
-  dataOutput(data: any) {
-    data["section"].forEach((item: any) => {
+  dataOutput(data: JsonForm) {
+    data["section"].forEach((item: Section) => {
       let group = item.group;
-      group.forEach((elem: any) => {
+      group.forEach((elem: Group) => {
         let param = elem.parameters;
-        param.forEach((field: any) => {
+        param.forEach((field: Parameters) => {
           if(!field["value"]) {
             field["value"] = 0;
           }
