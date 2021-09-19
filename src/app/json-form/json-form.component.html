@@ -1,0 +1,45 @@
+
+<div style="padding-left: 50px; padding-right: 50px; margin: 20px;">
+    <div><h2>ANDHRA PRADESH STATE CIVIL SUPPLIES CORPN LTD</h2></div>
+    <div *ngFor="let block of section" style="margin-bottom: 20px;">
+        <h3><b>{{block.name}}</b></h3>
+        <ul *ngFor="let chunk of block.group" style="margin-bottom: 20px;">
+            <li><h4>{{chunk.name}}</h4></li>
+            <div *ngFor="let control of chunk.parameters">
+                <div *ngIf="control.field_type === 'input'">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label style="font-size:medium;">{{control.name}}</mat-label>
+                        <input matInput placeholder="Ex. 10" [(ngModel)]="control.value">
+                    </mat-form-field>
+                </div>
+                <div *ngIf="control.field_type === 'slider'">
+                    <mat-card class="example-result-card">
+                        <mat-card-content>
+                            <div class="example-label-container"
+                                [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+                                <label id="example-name-label" class="example-name-label">{{control.name}}</label>
+                                <label class="example-value-label">{{control.value}}</label>
+                            </div>
+                            <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="max" [min]="min"
+                                [step]="step" [thumbLabel]="thumbLabel" [tickInterval]="getSliderTickInterval()"
+                                [(ngModel)]="control.value" [vertical]="vertical" aria-labelledby="example-name-label">
+                            </mat-slider>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div *ngIf="control.field_type === 'radio_buttons'" style="margin: 10px; padding: 10px; border-bottom: 1px solid lightgray;">
+                    <h4>{{control.name}}</h4>
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="control.value"
+                        class="example-full-width">
+                        <mat-radio-button value="yes">Yes</mat-radio-button>
+                        <mat-radio-button value="no">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <div class="example-button-row">
+        <button mat-raised-button disabled>Calculate</button>
+        <button mat-raised-button color="primary" (click)="createOutput()">Save</button>
+    </div>
+</div>
